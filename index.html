@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arquitectura orientada a servicios (SOA)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #336699;
+            text-align: center;
+        }
+
+        h3 {
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #336699;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Arquitectura orientada a servicios (SOA)</h1>
+    <p>En muchas empresas, los sistemas software han requerido grandes inversiones a lo largo de los años. La enorme
+        cantidad de datos almacenados en sistemas de información (EIS) legacy hace que descartarlos no sea práctico. El
+        software de empresa está estrechamente relacionado con la organización interna, procesos y modelo de negocio.
+    </p>
+    <p>El arquitecto enfrenta constantemente cambios y adiciones de funcionalidades que incrementan la complejidad del
+        sistema y reducen su eficiencia.</p>
+
+    <h3>Características de una arquitectura orientada a servicios:</h3>
+    <ul>
+        <li><strong>Simplicidad:</strong> Todos deben comprender y gestionar la arquitectura en sus niveles respectivos.
+        </li>
+        <li><strong>Flexibilidad y mantenibilidad:</strong> Los componentes deben ser reordenables y reconfigurables de
+            forma flexible.</li>
+        <li><strong>Reusabilidad:</strong> Compartir datos en tiempo real y funcionalidades comunes.</li>
+        <li><strong>Desacoplamiento entre funcionalidad y tecnología:</strong> La arquitectura debe hacer que la
+            organización de la empresa sea independiente de la tecnología.</li>
+    </ul>
+
+    <h3>Servicios Web</h3>
+    <p>Los servicios web han ganado gran popularidad en el siglo XXI, pero el término puede abarcar distintos conceptos
+        informáticos. Algunos se refieren a servicios de aplicaciones ofrecidos a usuarios a través de la web, mientras
+        que otros consideran módulos accesibles por otras aplicaciones mediante protocolos XML. Es importante destacar
+        que servicios web y SOA no son equivalentes, aunque los primeros pueden implementarse en una arquitectura SOA.
+        Técnicamente, un servicio es un módulo de aplicación autocontenido, accesible de forma remota, que proporciona
+        abstracción y reutilización de funcionalidades para satisfacer diversas demandas públicas, sin estar diseñado
+        para un cliente específico.</p>
+
+    <h1>Elementos que componen la arquitectura SOA:</h1>
+    <img src="elementosSoap.PNG" alt="">
+    <h3>Frontend de la aplicación:</h3>
+    <p>Un frontend de una aplicación puede presentar una interfaz gráfica de usuario, como por ejemplo una aplicación
+        Web
+        o un cliente rico que interactúa directamente con los usuarios finales. Los programas por lotes o los procesos
+        de
+        larga duración que invocan a las funcionalidades de forma periódica o como resultado de eventos específicos son
+        también ejemplos válidos de frontends. Los frontends no tienen que interactuar necesariamente de forma directa
+        con
+        los usuarios finales.</p>
+
+    <h3>Servicios:</h3>
+    <p>Un servicio es un componente software con un significado funcional que lo distingue de otros, y que típicamente
+        encapsula un concepto de negocio de alto nivel. A continuación, se muestra los elementos que forman parte de un
+        servicio.</p>
+    <ul>
+        <li>Contrato del servicio: Proporciona una especificación informal sobre el propósito, funcionalidad,
+            restricciones, y uso del servicio. La forma de dicha especificación puede variar dependiendo del tipo de
+            servicio. La definición formal de la interfaz basada en lenguajes tales como IDL y WSDL no es obligatoria.
+            Es
+            importante comprender que un contrato de un servicio proporciona más información que una especificación
+            formal. El contrato puede imponer una determinada semántica sobre la funcionalidad o el uso de parámetros
+            que
+            no están sujetos a especificaciones IDL o WSDL.</li>
+        <li>Interfaz del servicio: Expone la funcionalidad del servicio a los clientes que están conectados a dicho
+            servicio a través de la red. Si bien la descripción de la interfaz forma parte del contrato del servicio, la
+            implementación física de la misma consiste en unos stubs de servicio, que se incorporan en los clientes de
+            un
+            servicio.</li>
+        <li>Implementación del servicio: Proporciona la lógica del proceso, así como los datos requeridos. Es la
+            realización técnica que satisface el contrato del servicio. La implementación del servicio consiste en uno o
+            más artefactos tales como programas, datos de configuración y bases de datos.</li>
+    </ul>
+
+    <h3>Repositorio de Servicios:</h3>
+    <p>El repositorio de servicios proporciona facilidades para encontrar servicios y adquirir toda la información para
+        utilizar los servicios, particularmente si estos servicios deben encontrarse fuera del ámbito funcional y
+        temporal
+        del proyecto que los creó. Si bien mucha de la información requerida forma parte del contrato del servicio, el
+        repositorio de servicio puede proporcionar información adicional, tal como la localización física, información
+        sobre el proveedor, personas de contacto, tasas de uso, restricciones técnicas, cuestiones sobre seguridad, y
+        niveles de servicio disponibles.</p>
+    <p>Un lote de contratos de servicio impresos localizados en una oficina y accesible por todos los proyectos es un
+        repositorio de servicios válido. Sin embargo, hay mejores formas de proporcionar esta información, manteniendo
+        la
+        simplicidad del repositorio, como por ejemplo utilizar alguna base de datos propietaria que contiene datos
+        administrativos y contratos de servicios más o menos formales para cada versión de un servicio.</p>
+
+    <h3>Bus de Servicios:</h3>
+    <p>Un bus de servicios (ESB: Enterprise Service Bus) conecta a todos los participantes de una SOA (tanto servicios
+        como
+        frontends). Aunque existen diferencias significativas, entre ellas la más importante es que el bus de servicios
+        no
+        necesariamente debe estar formado por una única tecnología, sino que puede comprender varios productos y
+        conceptos.
+    </p>
+    <p>Las principales características de un bus de servicios son:</p>
+    <ul>
+        <li><strong>Conectividad:</strong> El objetivo principal de un bus de servicios es del de interconectar a los
+            participantes de una SOA. Por lo tanto, debe proporcionar facilidades para permitir a los participantes de
+            una
+            SOA invocar las funcionalidades de los servicios.</li>
+        <li><strong>Heterogeneidad de tecnología:</strong> Puesto que la realidad de las empresas se caracteriza por
+            tecnologías heterogéneas, el bus de servicios debe ser capaz de conectar participantes basados en diferentes
+            lenguajes de programación, sistemas operativos o soporte de ejecución. Además, normalmente encontraremos
+            muchos
+            productos middleware y protocolos de comunicación en la empresa, todas las cuales deben ser soportadas por
+            el
+            bus de servicios.</li>
+        <li><strong>Heterogeneidad de conceptos de comunicación:</strong> Es similar a lo expuesto anteriormente, pero
+            aplicado a las comunicaciones.</li>
+        <li><strong>Servicios técnicos:</strong> Si bien el propósito del bus de servicios es fundamentalmente la
+            comunicación, también debe proporcionar servicios técnicos tales como logging, auditorías, seguridad,
+            transformación de mensajes o transacciones.</li>
+    </ul>
+
+    <h3>Elementos clave de los servicios:</h3>
+    <p>Los servicios son el corazón de una arquitectura SOA y deben ser: débilmente acoplados, de grano grueso
+        (coarse-grained: implementan funcionalidades de alto nivel), centrados en el negocio y reutilizables.</p>
+    <p>El término acoplamiento hace referencia al grado en el que los componentes software dependen unos de otros. Los
+        procesos de negocio requieren un alto nivel de flexibilidad, y por lo tanto una arquitectura con un bajo
+        acoplamiento
+        para así poder reducir la complejidad total y las dependencias, y en consecuencia facilitar cambios más rápidos
+        y con
+        menores riesgos.
+    </p>
+    <h1>Capas en aplicaciones orientadas a servicios</h1>
+    <p>Al igual que en cualquier aplicación distribuida, las aplicaciones orientadas a servicios son aplicaciones multicapa
+        y tienen capas de presentación, lógica de negocio y persistencia.</p>
+    <p>Las dos capas clave en una aplicación orientada a servicios son la de servicios y la de la lógica de negocio.</p>
+    
+    <img src="capasServices.PNG" alt="">
+
+    <h3>Capa de servicios</h3>
+    <p>Como ya hemos dicho, los servicios son los bloques de construcción de las aplicaciones orientadas a servicios. Los
+        servicios son auto-contenidos, mantienen su propio estado y proporcionan una interfaz con bajo acoplamiento.</p>
+    <p>El mayor reto al construir una aplicación orientada a servicios es crear una interfaz con el nivel adecuado de
+        abstracción. Generalmente, los servicios deberían proporcionar una funcionalidad con un alto nivel de abstracción
+        (coarse-grained).</p>
+    <p>Por ejemplo, un componente software que procesa una orden de compra es un buen candidato para ser publicado como un
+        servicio, en contraposición con un componente que solamente actualiza un atributo de una orden de compra.</p>
+    <p>Cuando utilizamos servicios Web como tecnología de implementación para una SOA, el Web Service Description Language
+        (WSDL) describe los mensajes, tipos y operaciones del servicio Web, que constituyen el contrato de dichos servicios.
+    </p>
+    
+    <h3>Capa lógica de negocio</h3>
+    <p>Otra ‘‘promesa‘‘ de SOA es que podemos construir nuevas aplicaciones a partir de servicios existentes. El principal
+        beneficio que proporciona SOA es la estandarización del modelado de procesos de negocio, a menudo referido como
+        orquestación de servicios.</p>
+    <h3>EL GOBIERNO SOA</h3>
+    <p>La definición de la palabra «gobierno» implica la acción o forma de gobernar.</p>
+    <p>Los participantes en el gobierno deciden políticas sobre diferentes categorías de decisiones que deben realizarse.
+        Dichos participantes también llevan a cabo la identificación de roles entre la gente que conforma la empresa. Los
+        miembros del grupo de gobierno también identifican a los expertos en diferentes materias de quienes se espera que
+        proporcionen las «entradas» para acordar decisiones, así como identifican al grupo de gente que debe tener ejercer
+        sus responsabilidades. Un equipo de gobierno de IT debe tratar tres cuestiones:</p>
+    <ul>
+        <li>Decisiones que se deben tomar para asegurar una gestión y uso efectivos de la IT.</li>
+        <li>Autoridades que deben tomar dichas decisiones.</li>
+    </ul>
+    <h1>Arquitectura de Software</h1>
+    <p>La arquitectura de software define guías generales que indican la estructura, funcionamiento e interacción entre las
+        partes del software.</p>
+    
+    <h3>Estilo arquitectónico</h3>
+    <ul>
+        <li>Un estilo arquitectónico define una familia de sistemas en términos de patrones estructurales, de control, de
+            comunicación.</li>
+        <li>Los estilos de arquitectura no requieren el uso de tecnologías concretas, pero algunas tecnologías son adecuadas
+            para ciertas arquitecturas.</li>
+        <li>Un conjunto de componentes.</li>
+        <li>Un conjunto de conectores entre componentes.</li>
+        <li>Restricciones que definen cómo se integran los componentes para formar el sistema.</li>
+        <li>Modelos que permiten comprender las propiedades de un sistema general.</li>
+    </ul>
+    
+    <h3>Servicio Web</h3>
+    <p>Un servicio web es un sistema software diseñado para soportar la interacción máquina-a-máquina, a través de una red,
+        de forma interoperable.</p>
+    <p>Se basa en tecnologías como SOAP, típicamente transmitidos usando serialización XML sobre HTTP conjuntamente con
+        otros estándares web.</p>
+    
+    <h1>Microservicios</h1>
+    <img src="introMicro.PNG" alt="">
+    <p>Los microservicios son una evolución de los conceptos SOA.</p>
+    <ul>
+        <li>Aumentan la agilidad y velocidad para hacer cambios, y la habilidad de hacerlos con un costo total e impacto
+            menores en la infraestructura existente.</li>
+        <li>Aunque los microservicios se derivan de SOA, no es lo mismo que la arquitectura de microservicios.</li>
+    </ul>
+    <h3>REPRESENTACIÓN GRÁFICA SOA VS MICROSERVICIOS</h3>
+    <img src="sovmicro.PNG" alt="">
+    <h3>MONOLÍTICA, SOA Y MICROSERVICIOS</h3>
+    <img src="monosoamicro.PNG" alt="">
+    <h3>Arquitectura de Microservicios</h3>
+    <p>La arquitectura de microservicios es utilizada para crear aplicaciones usando un conjunto de pequeños servicios, los
+        cuales se comunican entre sí, pero se ejecutan de forma individual.</p>
+    <p>El término "Micro Web Services" fue utilizado por el Dr. Peter Rodgers, investigador en HP, en 2005. Luego, en 2011,
+        se empezó a utilizar el concepto de "microservicios".
+    </p>
+    <h3>Características de los Microservicios:</h3>
+    <img src="caracteristicas.PNG" alt="">
+    <ul>
+        <li><strong>Independencia y desacoplamiento:</strong> Cada microservicio es una entidad autónoma que puede
+            desarrollarse, implementarse y actualizarse de forma independiente.</li>
+        <li><strong>Escalabilidad:</strong> Los microservicios pueden escalar de manera individual según las necesidades
+            específicas, lo que mejora la eficiencia y reduce costos.</li>
+        <li><strong>Resiliencia:</strong> Si un microservicio falla, no afecta a todo el sistema, ya que cada servicio es
+            independiente y autónomo.</li>
+        <li><strong>Enfoque en un dominio específico:</strong> Cada microservicio se enfoca en resolver una tarea o función
+            específica, lo que facilita la comprensión y el desarrollo.</li>
+        <li><strong>Comunicación mediante API:</strong> Los microservicios se comunican entre sí a través de interfaces de
+            programación de aplicaciones (API), lo que permite una integración flexible.</li>
+        <li><strong>Tecnología y lenguajes heterogéneos:</strong> Los microservicios permiten utilizar tecnologías y
+            lenguajes de programación diferentes para cada servicio, según las necesidades y preferencias del equipo de
+            desarrollo.</li>
+    </ul>
+    </body>
+    
+    </html>
+    Este código HTML muestra información sobre "Arquitectura de Microservicios" junto con 6 características distintivas de
+    los microservicios. Puedes copiar y pegar este código en tu editor HTML para ver la información completa correctamente.
+
+    <h1>Puerta de enlace de API y Microservicios</h1>
+    
+    <h3>Puerta de enlace de API</h3>
+    <p>La puerta de enlace de API es el punto de entrada para los clientes en lugar de llamar a los servicios directamente.
+        Su mayor ventaja es que desacopla los clientes de los servicios, lo que permite que los servicios cambien de versión
+        o se refactoricen sin afectar a todos los clientes.</p>
+    <p>Esta puerta de enlace es una de las principales características de los microservicios.</p>
+    
+    <h3>Reforzando la definición de Microservicios</h3>
+    <p>Los microservicios son funciones bien definidas, pequeñas, autocontenidas e independientes del contexto o estado de
+        otros servicios. Se caracterizan por su reutilización, estandarización, abstracción y autonomía.</p>
+    
+    <h3>Consumidores o Clientes</h3>
+    <p>Los consumidores o clientes pueden ser aplicaciones móviles, sistemas, módulos de software u otros servicios.
+        Demandan la funcionalidad específica que los microservicios proporcionan y se ejecutan en una interfaz definida
+        llamando a los microservicios como recursos.</p>
+    <h2>INTERFAZ DISEÑADA PARA MICROSERVICIOS</h2>
+        <img src="compositeUi.PNG" alt="">
+    <h3>Ventajas de los Microservicios</h3>
+    <ul>
+        <li>Agilidad.</li>
+        <li>Equipos pequeños y centrados.</li>
+        <li>Base de código pequeña.</li>
+        <li>Mezcla de tecnologías.</li>
+        <li>Aislamiento de errores.</li>
+        <li>Escalabilidad.</li>
+        <li>Aislamiento de los datos.</li>
+    </ul>
+    
+    <h3>Desventajas de los Microservicios</h3>
+    <ul>
+        <li>Complejidad.</li>
+        <li>Desarrollo y pruebas.</li>
+        <li>Falta de gobernanza.</li>
+        <li>Congestión y latencia de red.</li>
+        <li>Dificultad para la integridad de datos.</li>
+        <li>Administración compleja.</li>
+        <li>Control de versiones delicada.</li>
+        <li>Evaluar conjunto de habilidades del equipo.</li>
+    </ul>
+
+    <h1>Frameworks y Stack para Microservicios</h1>
+    <p>Un Framework es una estructura previa que se puede aprovechar para desarrollar un proyecto. Es una plantilla o
+        esquema conceptual que simplifica la elaboración de una tarea al complementarlo con lo que se quiere realizar. Se
+        utiliza ampliamente en informática y también en Marketing.</p>
+    
+    <h3>Stack para Microservicios</h3>
+    <p>Los Microservicios son una arquitectura que se apoya en diferentes tecnologías para su implementación. Algunas de las
+        tecnologías populares para construir Stack para Microservicios incluyen:</p>
+    <ul>
+        <li><strong>NodeJS:</strong> Express + Baucis, SenecaJS, FeatherJS, Serverless: Claudia.</li>
+        <li><strong>Java:</strong> Jersey, Dropwizard, Sprint Boot, Play, SparkJava.</li>
+        <li><strong>.NET Core:</strong> NancyFX, WebAPI.</li>
+        <li><strong>Go:</strong> go-kit/kit, Micro/go-micro, goa.design, coding/kite, Serverless: Sparta, Apex, Gordon.</li>
+    </ul>
+
+    <h1>PERSISTENCIA DE DATOS</h1>
+    <img src="persistencia.PNG" alt="Descripción de la imagen">
+    <h2>ARQUITECTURA DE STACK MEAN PUERTOS </h2>
+    <img src="Puertos.PNG" alt="Descripción de la imagen">
+    <h2>ARQUITECTURA DE STACK MEAN</h2>
+    <img src="Mean.PNG" alt="Descripción de la imagen">
+    <h2>EJEMPLO DE MICROSERVICIO CON EXPRESS DE NODEJS</h2>
+    <img src="nodeJs.PNG" alt="Descripción de la imagen">
+    <h2>EJEMPLO DE MICROSERVICIO CON NANCYFX DE .NET CORE</h2>
+    <img src="netCore.PNG" alt="Descripción de la imagen">
+
+    </body>
+</body>
+
+</html>
